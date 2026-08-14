@@ -1,3 +1,8 @@
+/**
+ * Placeholder: Slugify tool.
+ * Purpose: Turn an input string into a URL-friendly slug.
+ * TODO: Add detailed README usage and examples.
+ */
 function slugify(value) {
   return value
     .toString() // Cast to string (optional)

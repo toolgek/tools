@@ -1,9 +1,13 @@
+function textCompare(left = "", right = "") {
+  const a = left ?? "";
+  const b = right ?? "";
+
+  return a === b ? "Identical" : "Different";
+}
+
 const tool = {
   run(input = {}) {
-    const left = input.left ?? "";
-    const right = input.right ?? "";
-
-    return left === right ? "Identical" : "Different";
+    return textCompare(input.left ?? "", input.right ?? "");
   },
 };
 

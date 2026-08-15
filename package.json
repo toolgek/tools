@@ -1,0 +1,7 @@
+{
+  "name": "@toolgek/tools",
+  "version": "0.1.0-alpha.1",
+  "description": "A collection of open-source JavaScript tools for developers.",
+  "type": "module",
+  "license": "MPL-2.0"
+}

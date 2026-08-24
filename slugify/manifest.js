@@ -1,11 +1,21 @@
 const manifest = {
   id: "slugify",
   type: "tool",
+
+  status: "alpha",
+
   name: "Slugify",
   description: "Convert text into a URL-friendly slug.",
-  tags: ["text", "utility"],
+
+  properties: {
+    domain: "data",
+    inputs: ["json"],
+    outputs: ["validation-result"],
+    operations: ["validate"]
+  },
+
   implementation: "./tool.js",
-  beta: true,
+
   ui: {
     inputs: [
       {

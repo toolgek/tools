@@ -1,19 +1,14 @@
-/**
- * Placeholder: Slugify tool.
- * Purpose: Turn an input string into a URL-friendly slug.
- * TODO: Add detailed README usage and examples.
- */
 function slugify(value) {
   return value
-    .toString() // Cast to string (optional)
-    .normalize('NFKD') // The normalize() using NFKD method returns the Unicode Normalization Form of a given string.
-    .toLowerCase() // Convert the string to lowercase letters
-    .trim() // Remove whitespace from both sides of a string (optional)
-    .replace(/\s+/g, '-') // Replace spaces with -
-    .replace(/[^\w\-]+/g, '') // Remove all non-word chars
-    .replace(/\_/g,'-') // Replace _ with -
-    .replace(/\-\-+/g, '-') // Replace multiple - with single -
-    .replace(/\-$/g, ''); // Remove trailing -
+    .toString() // Convert input to string (optional)
+    .normalize('NFKD') // Decompose Unicode characters
+    .toLowerCase() // Convert to lowercase
+    .trim() // Remove surrounding whitespace
+    .replace(/\s+/g, '-') // Replace whitespace with hyphens
+    .replace(/[^\w\-]+/g, '') // Remove non-word characters
+    .replace(/\_/g,'-') // Replace underscores with hyphens
+    .replace(/\-\-+/g, '-') // Collapse repeated hyphens
+    .replace(/^-+|-+$/g, ''); // Remove leading and trailing hyphens
 }
 
 const tool = {

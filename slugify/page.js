@@ -1,9 +1,9 @@
 const page = {
   seo: {
-    title: "Slugify Text Online - Free URL Slug Generator",
+    title: "Slugify Text - Text to URL Slug Converter",
 
     description:
-      "Convert text into clean, URL-friendly slugs for websites, blogs, and applications.",
+      "Convert text into clean, URL-friendly slugs. Normalize capitalization, spaces, punctuation, and special characters directly in your browser.",
 
     keywords: [
       "slug generator",

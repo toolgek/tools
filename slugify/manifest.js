@@ -8,10 +8,10 @@ const manifest = {
   description: "Convert text into a URL-friendly slug.",
 
   properties: {
-    domain: "data",
-    inputs: ["json"],
-    outputs: ["validation-result"],
-    operations: ["validate"]
+    domain: "text",
+    inputs: ["string"],
+    outputs: ["string"],
+    operations: ["transform"]
   },
 
   implementation: "./tool.js",

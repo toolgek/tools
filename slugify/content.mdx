@@ -1,4 +1,31 @@
-{/* Slugify Content */}
+## How to use Slugify
+
+1. Enter the text you want to convert.
+2. Run the tool.
+3. Copy the generated slug.
+
+## Examples
+
+| Input | Output |
+|---|---|
+| `Normalize, THIS!` | `normalize-this` |
+| `Jäger's résumé` | `jagers-resume` |
+| `½ off all stock` | `12-off-all-stock` |
+| `--Hello--World--` | `hello-world` |
+
+## How Slugify handles input
+
+Slugify converts your input into a URL-friendly format.
+
+| Input characteristic | Handling |
+|---|---|
+| Accented characters | Decomposed using NFKD normalization |
+| Uppercase letters | Converted to lowercase |
+| Whitespace | Trimmed and converted to hyphens |
+| Non-Alphanumeric characters | Removed |
+| Underscores | Converted to hyphens |
+| Repeated hyphens | Collapsed to single hyphen |
+| Leading/trailing hyphens | Removed |
 
 ## What is a URL slug?
 
@@ -6,30 +33,13 @@ A URL slug is the human-readable part of a web address that identifies a particu
 
 For example, in:
 
-`https://example.com/blog/my-first-post`
+`https://toolgek.com/tools/text-compare`
 
 the slug is:
 
-`my-first-post`
+`text-compare`
 
 Good slugs are generally short, descriptive, readable, and consistent.
-
-## How to use Slugify
-
-1. Enter the text you want to convert.
-2. Run the tool.
-3. Copy the generated slug.
-
-Slugify handles the conversion so you do not have to manually change capitalization, replace spaces, or remove punctuation.
-
-## Examples
-
-| Input | Output |
-|---|---|
-| `Hello World` | `hello-world` |
-| `My First Blog Post` | `my-first-blog-post` |
-| `Hello, World!` | `hello-world` |
-| `This Is A Test` | `this-is-a-test` |
 
 ## What makes a good URL slug?
 
@@ -67,14 +77,6 @@ URL slugs are commonly used for:
 
 ## Frequently Asked Questions
 
-### What is a slug?
-
-A slug is the human-readable portion of a URL that identifies a particular page or resource.
-
-For example, `my-first-post` is the slug in:
-
-`https://example.com/blog/my-first-post`
-
 ### Why are slugs usually lowercase?
 
 Lowercase URLs provide a consistent format and avoid unnecessary differences caused by capitalization. Using lowercase also makes generated slugs predictable.
@@ -110,7 +112,3 @@ For example:
 Clean, descriptive URLs can help users and search engines understand the subject of a page. However, URL structure is only one part of search visibility.
 
 A good slug should primarily be useful and understandable to people rather than written to target search engines.
-
-## Related tools
-
-If you need to transform or work with text in other ways, explore related text utilities available on Toolgek.

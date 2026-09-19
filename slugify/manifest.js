@@ -3,6 +3,7 @@ const manifest = {
   type: "tool",
 
   status: "alpha",
+  version: "0.1.0",
 
   name: "Slugify",
   description: "Convert text into a URL-friendly slug.",

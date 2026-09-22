@@ -1,26 +1,18 @@
-/**
- * Placeholder: Camel case conversion tool.
- * Purpose: Convert an input string into camelCase.
- * TODO: Add detailed README usage and examples.
- */
 function camelCase(value) {
   return value
-    .toString() // Cast to string
-    .normalize("NFKD") // Normalize Unicode characters
-    .replace(/[^\w\s-]/g, "") // Remove punctuation except spaces, underscores and hyphens
-    .trim() // Remove whitespace from both ends
+    .toString() // Convert input to string
+    .normalize("NFKD") // Decompose Unicode characters
+    .trim() // Remove surrounding whitespace
+    .replace(/[^\p{L}\p{N}\s_-]+/gu, " ") // Remove punctuation and treat as word boundaries
     .split(/[\s_-]+/) // Split on spaces, underscores or hyphens
     .map((word, index) => {
-      // Normalize each segment to lowercase for predictable casing
-      word = word.toLowerCase();
+      word = word.toLowerCase(); // Normalize each segment to lowercase
 
-      // First word remains lowercase in camelCase
-      if (index === 0) {
+      if (index === 0) { // Keep first word as lowercase
         return word;
       }
 
-      // Capitalize first character of subsequent words
-      return word.charAt(0).toUpperCase() + word.slice(1);
+      return word.charAt(0).toUpperCase() + word.slice(1); // Capitalize first character of subsequent words
     })
     .join("");
 }

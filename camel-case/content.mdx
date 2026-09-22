@@ -1,0 +1,99 @@
+## How to use Camel Case
+
+1. Enter the text you want to convert.
+2. Run the tool.
+3. Copy the generated camelCase result.
+
+## Examples
+
+| Input | Output |
+|---|---|
+| `hello world` | `helloWorld` |
+| `Hello World` | `helloWorld` |
+| `hello-world` | `helloWorld` |
+| `hello_world` | `helloWorld` |
+| `hello.world` | `helloWorld` |
+| `HELLO WORLD` | `helloWorld` |
+| `helloWorld` | `helloworld` |
+
+## How Camel Case handles input
+
+| Input characteristic | Handling |
+|---|---|
+| Unicode text | Decomposed using NFKD normalization |
+| Surrounding whitespace | Trimmed |
+| Spaces, underscores, and hyphens | Used as word separators |
+| Punctuation and special characters | Treated as word boundaries |
+| Word segments | Converted to lowercase |
+| First segment | Kept lowercase |
+| Later segments | First character capitalized |
+
+This tool normalizes and rebuilds the text from detected word segments, it does not preserve existing camelCase, acronyms, or the exact form of every Unicode character.
+
+## What is camel case?
+
+Camel case, often written as camelCase, is a text format where separators between words are removed, the first word is lowercase and capitalization of the first character is used to show where later words begin.
+
+For example:
+
+`helloWorldExample`
+
+This format is commonly used for identifiers, field names, and similar text values where words need to be combined into a single readable string.
+
+## What this camel case converter does
+
+This tool turns text into camel case by breaking the input into word segments, lowercasing those words, and then capitalizing each word after the first before joining them together.
+
+That means the result is based on normalized word boundaries, not on preserving the capitalization pattern of the original text.
+
+For example, the current implementation converts:
+
+`helloWorld`
+
+to:
+
+`helloworld`
+
+It also treats punctuation as a separator, so input such as:
+
+`hello.world`
+
+becomes:
+
+`helloWorld`
+
+## Common uses for camel case text
+
+Camel case text is commonly used for:
+
+- Variable-like labels
+- Field and property names
+- Data keys
+- Formatted text values
+- Converting spaced or punctuated text into a compact identifier-style format
+
+## Frequently Asked Questions
+
+### Does this preserve existing camelCase input?
+
+No. The tool normalizes each detected word to lowercase first, then rebuilds the result in camelCase. Existing capitalization is not preserved.
+
+### How does this handle punctuation?
+
+Punctuation and other special characters are treated as word boundaries.
+
+For example:
+
+`hello.world`
+
+becomes:
+
+`helloWorld`
+
+### Does this keep Unicode characters exactly as entered?
+
+No. The input is normalized using NFKD before the camel case conversion runs, so the output is a normalized representation rather than an exact character-for-character copy of the original text.
+
+### What is considered a word boundary?
+
+Any point where the text is separated by one or more non-letter-or-digit characters after Unicode NFKD normalization. That includes spaces, punctuation, underscores, hyphens, and other symbols.

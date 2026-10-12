@@ -1,7 +1,7 @@
 <div align="center">
 
   <a href="https://toolgek.com">
-    <img src="assets/toolgek-plaintext-alpha-logo.png" alt="Toolgek"/>
+    <img src="public/assets/toolgek-plaintext-alpha-logo.png" alt="Toolgek"/>
   </a>
 
 </div>

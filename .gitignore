@@ -11,4 +11,5 @@
 
 # Custom developer extensions
 *.draft.*
+*.old.*
 *.temp.*

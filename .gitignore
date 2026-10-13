@@ -1,3 +1,14 @@
-/node_modules
-.vscode/
-/agent
+# Toolgek Tools Repository Git Ignore
+
+# Dependencies
+/node_modules/
+
+# Workspace
+/.vscode/
+
+# LLMs & Agents
+/agent/
+
+# Custom developer extensions
+*.draft.*
+*.temp.*

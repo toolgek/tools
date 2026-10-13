@@ -1,35 +1,99 @@
-/**
- * Placeholder: Number base conversion tool.
- * Purpose: Convert a decimal integer string into the provided base (default base 2).
- * TODO: Add detailed README usage and examples.
- */
-function numberBase(raw, baseStr = "2") {
-  // Coerce value to string and trim whitespace
-  const input = (raw ?? "").toString().trim();
+const DIGITS = "0123456789abcdefghijklmnopqrstuvwxyz";
 
-  // Parse base as integer (fallback to binary base 2)
-  const base = parseInt(baseStr ?? "2", 10);
+function parseBase(baseStr, label) {
+  const raw = (baseStr ?? "").toString().trim();
 
-  // Validate presence of input
-  if (input === "") {
-    throw new Error("Enter a decimal number.");
+  if (raw === "") {
+    throw new Error(`Choose a ${label} base.`);
   }
 
-  // Parse the provided decimal string into a number
-  const decimal = parseInt(input, 10);
+  if (!/^[+-]?\d+$/.test(raw)) {
+    throw new Error(`${label} base must be an integer between 2 and 36.`);
+  }
 
-  // Validate numeric parse result
-  if (isNaN(decimal)) {
+  const base = parseInt(raw, 10);
+  if (base < 2 || base > 36) {
+    throw new Error(`${label} base must be between 2 and 36.`);
+  }
+
+  return base;
+}
+
+function parseSignedDigits(raw) {
+  const input = (raw ?? "").toString().trim();
+
+  if (input === "") {
+    throw new Error("Enter a number.");
+  }
+
+  let sign = 1n;
+  let digits = input;
+
+  if (digits.startsWith("+") || digits.startsWith("-")) {
+    sign = digits[0] === "-" ? -1n : 1n;
+    digits = digits.slice(1);
+  }
+
+  if (digits === "") {
     throw new Error(`"${input}" is not a valid integer.`);
   }
 
-  // Convert decimal to target base and return as string
-  return decimal.toString(base);
+  return { sign, digits: digits.toLowerCase(), input };
+}
+
+function parseValueInBase(raw, fromBase) {
+  const { sign, digits } = parseSignedDigits(raw);
+
+  let value = 0n;
+  const from = BigInt(fromBase);
+
+  for (const ch of digits) {
+    const digit = DIGITS.indexOf(ch);
+    if (digit < 0 || digit >= fromBase) {
+      throw new Error(`Digit "${ch}" is not valid for base ${fromBase}.`);
+    }
+
+    value = value * from + BigInt(digit);
+  }
+
+  if (value === 0n) {
+    return 0n;
+  }
+
+  return sign < 0n ? -value : value;
+}
+
+function formatValueInBase(value, toBase) {
+  if (value === 0n) {
+    return "0";
+  }
+
+  const base = BigInt(toBase);
+  const negative = value < 0n;
+  let remaining = negative ? -value : value;
+  let output = "";
+
+  while (remaining > 0n) {
+    const digit = Number(remaining % base);
+    output = DIGITS[digit] + output;
+    remaining = remaining / base;
+  }
+
+  return negative ? `-${output}` : output;
+}
+
+function numberBase(raw, fromBaseStr = "10", toBaseStr = "2") {
+  const fromBase = parseBase(fromBaseStr, "Source");
+  const toBase = parseBase(toBaseStr, "Target");
+  const value = parseValueInBase(raw, fromBase);
+  return formatValueInBase(value, toBase);
 }
 
 const tool = {
   run(input = {}) {
-    return numberBase(input.number ?? "", input.base ?? "2");
+    const fromBase = input.fromBase ?? "10";
+    const toBase = input.toBase ?? "2";
+    return numberBase(input.number ?? "", fromBase, toBase);
   },
 };
 
